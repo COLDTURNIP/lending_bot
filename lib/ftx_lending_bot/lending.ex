@@ -13,7 +13,9 @@ defmodule FtxLendingBot.Lending do
           {
             lended.coin,
             Float.floor(lended.lendable, 8),
-            Map.get(rates, lended.coin)
+
+            # ensure submit rate can lending success
+            Map.get(rates, lended.coin) * 0.6
           }
         end
       )
