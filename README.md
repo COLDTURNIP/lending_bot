@@ -1,5 +1,7 @@
 # Raphanus' Lending Bot
 
+Bot to refresh lending offers to earn compound interest in cryptocurrency exchanges. Currently supports only FTX Pro.
+
 ## Build
 
 ```bash
