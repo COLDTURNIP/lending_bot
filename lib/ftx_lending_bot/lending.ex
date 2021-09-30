@@ -8,14 +8,14 @@ defmodule FtxLendingBot.Lending do
          status <- lending_status(credentials) do
       Enum.filter_map(
         status,
-        fn lended -> Map.has_key?(rates, lended.coin) end,
-        fn lended ->
+        fn linfo -> linfo.offered > 0.0 && Map.has_key?(rates, linfo.coin) end,
+        fn linfo ->
           {
-            lended.coin,
-            Float.floor(lended.lendable, 8),
+            linfo.coin,
+            Float.floor(linfo.lendable, 8),
 
             # ensure submit rate can lending success
-            Map.get(rates, lended.coin) * 0.6
+            Map.get(rates, linfo.coin) * 0.6
           }
         end
       )
